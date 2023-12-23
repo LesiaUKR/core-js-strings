@@ -357,7 +357,7 @@ function isPalindrome(str) {
 function findLongestWord(sentence) {
   const splittedSentence = sentence.split(' ');
   const longestWord = splittedSentence.reduce(
-    (longest, current) => (current.length > longest.length ? current : longest),
+    (prev, next) => (next.length > prev.length ? next : prev),
     ''
   );
   return longestWord;
@@ -373,10 +373,15 @@ function findLongestWord(sentence) {
  *   reverseWords('Hello World') => 'olleH dlroW'
  *   reverseWords('The Quick Brown Fox') => 'ehT kciuQ nworB xoF'
  */
-function reverseWords(/* str */) {
-  throw new Error('Not implemented');
+function reverseWords(str) {
+  const splittedStr = str.split(' ');
+  const reversedArray = [];
+  for (let i = 0; i <= splittedStr.length - 1; i += 1) {
+    const reversedWord = splittedStr[i].split('').reverse().join('');
+    reversedArray.push(reversedWord);
+  }
+  return reversedArray.join(' ');
 }
-
 /**
  * Inverts the case of each character in the given string.
  *
@@ -388,10 +393,20 @@ function reverseWords(/* str */) {
  *   invertCase('JavaScript is Fun') => 'jAVAsCRIPT IS fUN'
  *   invertCase('12345') => '12345'
  */
-function invertCase(/* str */) {
-  throw new Error('Not implemented');
+function invertCase(str) {
+  let invertedStr = '';
+  for (let i = 0; i <= str.length - 1; i += 1) {
+    const invertedWord =
+      str[i] === str[i].toLowerCase()
+        ? str[i].toUpperCase()
+        : str[i].toLowerCase();
+    invertedStr += invertedWord;
+  }
+
+  return invertedStr;
 }
 
+invertCase('Hello, World!');
 /**
  * Returns the result of string template and given parameters firstName and lastName.
  * Please do not use concatenation, use template string :
@@ -405,8 +420,8 @@ function invertCase(/* str */) {
  *   getStringFromTemplate('John','Doe') => 'Hello, John Doe!'
  *   getStringFromTemplate('Chuck','Norris') => 'Hello, Chuck Norris!'
  */
-function getStringFromTemplate(/* firstName, lastName */) {
-  throw new Error('Not implemented');
+function getStringFromTemplate(firstName, lastName) {
+  return `Hello, ${firstName} ${lastName}!`;
 }
 
 /**
@@ -419,8 +434,11 @@ function getStringFromTemplate(/* firstName, lastName */) {
  *   extractNameFromTemplate('Hello, John Doe!') => 'John Doe'
  *   extractNameFromTemplate('Hello, Chuck Norris!') => 'Chuck Norris'
  */
-function extractNameFromTemplate(/* value */) {
-  throw new Error('Not implemented');
+function extractNameFromTemplate(value) {
+  const splittedValue = value.split(', ');
+  const fullName = splittedValue[splittedValue.length - 1].slice(0, -1);
+
+  return fullName;
 }
 
 /**
@@ -434,8 +452,8 @@ function extractNameFromTemplate(/* value */) {
  *   unbracketTag('<span>') => 'span'
  *   unbracketTag('<a>') => 'a'
  */
-function unbracketTag(/* str */) {
-  throw new Error('Not implemented');
+function unbracketTag(str) {
+  return str.slice(1, -1);
 }
 
 /**
@@ -453,8 +471,8 @@ function unbracketTag(/* str */) {
  *   ],
  *   'info@gmail.com' => ['info@gmail.com']
  */
-function extractEmails(/* str */) {
-  throw new Error('Not implemented');
+function extractEmails(str) {
+  return str.split(';');
 }
 
 /**
